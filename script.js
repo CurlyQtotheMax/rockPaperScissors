@@ -12,4 +12,37 @@ function computerPlay (){
     }
 }
 
-console.log(computerPlay())
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+
+function playRound(playerSelection, computerSelection){
+
+    playerSelection = playerSelection.toLowerCase();
+    
+
+
+    if( 
+        playerSelection === computerSelection
+    ){
+        return("It's a tie");
+    }
+
+    if(
+        playerSelection === "rock" && computerSelection === "paper"
+    ){
+        return("Computer wins");
+    }
+
+    if(
+        playerSelection === "rock" && computerSelection === "scissors"
+    ){
+        return("Player Wins");
+    }
+
+}
+
+
+
+
+console.log("computerSelection is " + computerSelection);
+console.log(playRound(playerSelection, computerSelection));
