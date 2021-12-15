@@ -12,14 +12,7 @@ function computerPlay (){
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-
 function playRound(playerSelection, computerSelection){
-
-    playerSelection = playerSelection.toLowerCase();
-    
-
 
     if( 
         playerSelection === computerSelection
@@ -28,21 +21,33 @@ function playRound(playerSelection, computerSelection){
     }
 
     if(
-        playerSelection === "rock" && computerSelection === "paper"
+        playerSelection === "rock" && computerSelection === "paper" ||
+        playerSelection === "paper" && computerSelection === "scissors" ||
+        playerSelection === "scissors" && computerSelection === "rock"
     ){
-        return("Computer wins");
+        return(computerSelection + " beats " + playerSelection + "Computer wins");
     }
 
     if(
-        playerSelection === "rock" && computerSelection === "scissors"
+        playerSelection === "rock" && computerSelection === "scissors" ||
+        playerSelection === "paper" && computerSelection === "rock" ||
+        playerSelection === "scissors" && computerSelection === "paper" 
     ){
-        return("Player Wins");
+        return(playerSelection + " beats " + computerSelection + "Player Wins");
     }
 
 }
 
+function game(){
+
+    let input = window.prompt("Rock, paper or scissors?");
+    let playerInput = input.toLowerCase();
+
+    alert(playRound(playerInput, computerPlay()));
+    
+}
 
 
-
-console.log("computerSelection is " + computerSelection);
-console.log(playRound(playerSelection, computerSelection));
+game()
+//console.log("computerSelection is " + computerSelection);
+//console.log(playRound(playerSelection, computerSelection));
