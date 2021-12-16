@@ -12,12 +12,15 @@ function computerPlay (){
     }
 }
 
+let computerScore = 0;
+let playerScore = 0;
+
 function playRound(playerSelection, computerSelection){
 
     if( 
         playerSelection === computerSelection
     ){
-        return("It's a tie");
+        return("It's a tie!");
     }
 
     if(
@@ -25,7 +28,9 @@ function playRound(playerSelection, computerSelection){
         playerSelection === "paper" && computerSelection === "scissors" ||
         playerSelection === "scissors" && computerSelection === "rock"
     ){
-        return(computerSelection + " beats " + playerSelection + "Computer wins");
+        computerScore++;
+        return(computerSelection + " beats " + playerSelection + " Computer wins!");
+        
     }
 
     if(
@@ -33,21 +38,39 @@ function playRound(playerSelection, computerSelection){
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper" 
     ){
-        return(playerSelection + " beats " + computerSelection + "Player Wins");
+        playerScore ++;
+        return(playerSelection + " beats " + computerSelection + " Player Wins!");
+        
     }
 
 }
 
-function game(){
+function game(i){
 
-    let input = window.prompt("Rock, paper or scissors?");
-    let playerInput = input.toLowerCase();
+    if (i==5){
+        if(playerScore === computerScore){
+            alert("It's a tie, no one is a champion.");
+        }
+        if(playerScore > computerScore){
+            alert("You are the Champion!");
+        }
+        if(computerScore>playerScore){
+            alert("The Computer is the Champion!")
+        }
+        
+    } else{
 
-    alert(playRound(playerInput, computerPlay()));
-    
+        let input = window.prompt("Rock, paper or scissors?");
+        let playerInput = input.toLowerCase();
+
+        alert(playRound(playerInput, computerPlay()) + " Player: " + playerScore + " " +" Computer: " + computerScore);
+    }
 }
 
+game(0)
+game(1)
+game(2)
+game(3)
+game(4)
+game(5)
 
-game()
-//console.log("computerSelection is " + computerSelection);
-//console.log(playRound(playerSelection, computerSelection));
