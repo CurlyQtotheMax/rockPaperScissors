@@ -1,4 +1,26 @@
-//console.log("hello world")
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+
+const whoWins = document.querySelector('#whoWins');
+const playerChose = document.querySelector('#playerChose');
+const computerChose = document.querySelector('#computerChose');
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+const game = document.querySelector('#game');
+
+let playerInput = "no input";
+
+
+scissorsButton.addEventListener('click', () => {
+    playRound("scissors", computerPlay());
+});
+paperButton.addEventListener('click', () => {
+    playRound("paper", computerPlay());
+});
+rockButton.addEventListener('click', () => {
+    playRound("rock", computerPlay());
+});
 
 function computerPlay (){
     let ranNum = Math.floor(Math.random()*3);
@@ -12,15 +34,15 @@ function computerPlay (){
     }
 }
 
-let computerScore = 0;
-let playerScore = 0;
-
 function playRound(playerSelection, computerSelection){
+
+    playerChose.textContent = playerSelection;
+    computerChose.textContent = computerSelection;
 
     if( 
         playerSelection === computerSelection
     ){
-        return("It's a tie!");
+        whoWins.textContent = "It's a tie!"
     }
 
     if(
@@ -28,9 +50,9 @@ function playRound(playerSelection, computerSelection){
         playerSelection === "paper" && computerSelection === "scissors" ||
         playerSelection === "scissors" && computerSelection === "rock"
     ){
-        computerScore++;
-        return(computerSelection + " beats " + playerSelection + " Computer wins!");
         
+        computerScore.textContent++;
+        whoWins.textContent = computerSelection + " beats " + playerSelection + " Computer wins!";
     }
 
     if(
@@ -38,39 +60,29 @@ function playRound(playerSelection, computerSelection){
         playerSelection === "paper" && computerSelection === "rock" ||
         playerSelection === "scissors" && computerSelection === "paper" 
     ){
-        playerScore ++;
-        return(playerSelection + " beats " + computerSelection + " Player Wins!");
         
+        playerScore.textContent++;
+        whoWins.textContent = playerSelection + " beats " + computerSelection + " Player wins!";
     }
 
+    if(playerScore.textContent == '5' || computerScore.textContent == '5'){
+        winning();
+    }
+    
+
 }
+function winning(){
+    if (playerScore.textContent == '5'){
 
-function game(i){
+        game.textcontent = 'Player wins everything';
+        console.log('player wins');
 
-    if (i==5){
-        if(playerScore === computerScore){
-            alert("It's a tie, no one is a champion.");
-        }
-        if(playerScore > computerScore){
-            alert("You are the Champion!");
-        }
-        if(computerScore>playerScore){
-            alert("The Computer is the Champion!")
-        }
-        
-    } else{
+    }if(computerScore.textContent == '5'){
 
-        let input = window.prompt("Rock, paper or scissors?");
-        let playerInput = input.toLowerCase();
+        game.textContent = 'Computer wins everything';
+        console.log('computer wins');
 
-        alert(playRound(playerInput, computerPlay()) + " Player: " + playerScore + " " +" Computer: " + computerScore);
     }
 }
 
-game(0)
-game(1)
-game(2)
-game(3)
-game(4)
-game(5)
 
